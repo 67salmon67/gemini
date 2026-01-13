@@ -3,13 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>C++ 課程筆記全集</title>
+    <title>C++ APCS 課程筆記全集</title>
     <style>
         :root {
             --primary-color: #28a745;
-            --bg-color: #f8f9fa;
-            --text-color: #333;
-            --sidebar-width: 250px;
+            --secondary-color: #0984e3;
+            --bg-color: #f4f7f6;
+            --sidebar-color: #2d3436;
+            --code-bg: #1e1e1e;
         }
         body {
             font-family: "Segoe UI", "Microsoft JhengHei", sans-serif;
@@ -17,18 +18,20 @@
             margin: 0;
             display: flex;
             background-color: var(--bg-color);
+            color: #333;
         }
         /* 左側導覽列 */
         .sidebar {
-            width: var(--sidebar-width);
+            width: 260px;
             height: 100vh;
-            background: #2d3436;
+            background: var(--sidebar-color);
             color: white;
             position: fixed;
             padding: 20px;
             overflow-y: auto;
+            box-sizing: border-box;
         }
-        .sidebar h2 { font-size: 1.2rem; border-bottom: 1px solid #555; padding-bottom: 10px; }
+        .sidebar h2 { font-size: 1.2rem; border-bottom: 1px solid #555; padding-bottom: 10px; margin-top: 0; }
         .sidebar a {
             display: block;
             color: #dfe6e9;
@@ -37,61 +40,59 @@
             border-radius: 5px;
             margin-bottom: 5px;
             font-size: 0.9rem;
+            transition: 0.3s;
         }
-        .sidebar a:hover { background: #4b4b4b; }
-        
+        .sidebar a:hover { background: #4b4b4b; color: white; }
+        .back-home { color: var(--primary-color) !important; font-weight: bold; margin-bottom: 20px !important; }
+
         /* 主要內容區 */
         .main-content {
-            margin-left: calc(var(--sidebar-width) + 40px);
+            margin-left: 260px;
             padding: 40px;
-            max-width: 900px;
+            width: calc(100% - 260px);
+            max-width: 1000px;
             background: white;
             min-height: 100vh;
             box-shadow: -5px 0 15px rgba(0,0,0,0.05);
+            box-sizing: border-box;
         }
         
-        h1 { color: var(--primary-color); border-left: 5px solid var(--primary-color); padding-left: 15px; }
-        h2 { color: #2d3436; margin-top: 40px; border-bottom: 2px solid #eee; }
-        h3 { color: #0984e3; }
+        section { scroll-margin-top: 20px; margin-bottom: 100px; border-bottom: 2px solid #eee; padding-bottom: 50px; }
+        h1 { color: var(--primary-color); border-left: 8px solid var(--primary-color); padding-left: 15px; }
+        h2 { color: #2d3436; margin-top: 30px; }
+        h3 { color: var(--secondary-color); border-bottom: 1px solid #eee; padding-bottom: 5px; }
         
+        .note-card {
+            background: #e8f5e9;
+            padding: 15px 25px;
+            border-left: 5px solid var(--primary-color);
+            margin: 20px 0;
+            border-radius: 4px;
+        }
         .code-box {
-            background: #282c34;
-            color: #abb2bf;
+            background: var(--code-bg);
+            color: #dcdcdc;
             padding: 20px;
             border-radius: 8px;
             overflow-x: auto;
-            font-family: 'Consolas', monospace;
+            font-family: 'Consolas', 'Courier New', monospace;
             font-size: 14px;
             line-height: 1.5;
-            margin: 15px 0;
+            margin: 20px 0;
+            white-space: pre;
         }
-        .image-placeholder {
-            max-width: 100%;
-            height: auto;
-            border-radius: 8px;
-            margin: 10px 0;
-            border: 1px solid #ddd;
-        }
-        .back-home {
-            display: inline-block;
-            margin-bottom: 20px;
-            color: var(--primary-color);
-            text-decoration: none;
-            font-weight: bold;
-        }
-        .note-card {
-            background: #e1f5fe;
-            padding: 15px;
-            border-left: 5px solid #03a9f4;
-            margin: 10px 0;
-        }
+        .image-container { text-align: center; margin: 25px 0; }
+        .image-container img { max-width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
+        
+        .problem-info { background: #fdf2f2; padding: 15px; border-radius: 8px; border: 1px solid #fee2e2; margin: 15px 0; }
+        .highlight { color: #d63031; font-weight: bold; }
     </style>
 </head>
 <body>
 
-    <div class="sidebar">
+    <nav class="sidebar">
         <a href="../../" class="back-home">🏠 回到網站首頁</a>
-        <h2>C++ 筆記目錄</h2>
+        <h2>APCS 筆記全集</h2>
         <a href="#ch1">CH1 七言對聯</a>
         <a href="#ch2">CH2 修補圍籬</a>
         <a href="#ch3">CH3 數字遊戲</a>
@@ -99,55 +100,195 @@
         <a href="#ch5">CH5 路徑偵測</a>
         <a href="#ch6">CH6 機械鼠</a>
         <a href="#ch7">CH7 遊戲選角</a>
-    </div>
+    </nav>
 
-    <div class="main-content">
-        
+    <main class="main-content">
+
         <section id="ch1">
-            <h1>CH1 課程筆記 - 七言對聯</h1>
+            <h1>1 課程筆記</h1>
             <div class="note-card">
-                <strong>課程重點：</strong>
-                1. 條件式與數學式不同，會判斷出 1 或 0。<br>
-                2. if 後面若沒大括號，只會執行下一行。
+                <strong>重點內容：</strong>
+                <ul>
+                    <li>條件式與數學式不同，是一種運算，會判斷出1或0的結果。</li>
+                    <li>if 後面若沒大括號，只會執行下方一行程式碼。</li>
+                </ul>
             </div>
-            <h3>a113: 七言對聯</h3>
-            <p><strong>思路：</strong>用 || 判斷 A B C 三種規則。</p>
-            <div class="code-box">
-<pre>
-// 程式碼精選段落
-if(a[1]== a[3] || a[1] != a[5] || b[1]== b[3] || b[1] != b[5]){
-    ans+="A";
-}
-</pre>
+            <h3>a113: APCS 110.09 1.七言對聯</h3>
+            <div class="problem-info">
+                <strong>題目概述：</strong>二四不同二六同、仄起平收、上下相對。用0, 1代表平仄，輸出違反規則 A, B, C 或 None。
             </div>
-            <img src="https://hackmd.io/_uploads/H1qHx2L5le.png" class="image-placeholder">
+            <p><strong>解題思路：</strong>1. 循環輸入兩個矩陣 2. 用 || 判斷規則 3. 輸出結果</p>
+            <div class="code-box">#include&lt;bits/stdc++.h&gt;
+using namespace std;
+int main(){
+    int n; cin>>n;
+    int a[7], b[7];
+    for(int j=0; j&lt;n; j++){
+        for (int i=0;i&lt;7;i++){ cin>>a[i]; }
+        for (int i=0;i&lt;7;i++){ cin>>b[i]; }
+        string ans = "";
+        if(a[1]== a[3] ||a[1] != a[5]||b[1]== b[3] ||b[1] != b[5]){ ans+="A"; }
+        if(a[6]==0||b[6] == 1){ ans+="B"; }
+        if (a[1]==b[1]||a[3] == b[3]||a[5] == b[5]){ ans+="C"; }
+        if (ans==""){ cout<<"None"<<endl; }
+        else{ cout&lt;&lt;ans&lt;&lt;endl; }
+    }
+    return 0;
+}</div>
+            <div class="image-container"><img src="https://hackmd.io/_uploads/H1qHx2L5le.png"></div>
+            <p><strong>心得：</strong>語法算簡單，但條件式設定須思考清楚。</p>
         </section>
 
         <section id="ch2">
-            <h1>CH2 課程筆記 - 修補圍籬</h1>
+            <h1>2 課程筆記</h1>
             <div class="note-card">
-                <strong>課程重點：</strong> 陣列走訪與邊界處理。
+                <strong>重點內容：</strong> 陣列基本操作、邊界處理、利用題目限制簡化判斷。
             </div>
-            <h3>a134: 修補圍籬</h3>
-            <div class="code-box">
-<pre>
-if(i==0) ans+=a[i+1]; // 左邊界
-else if(i==n-1) ans+=a[i-1]; // 右邊界
-else ans+=min(a[i-1],a[i+1]);
-</pre>
-            </div>
-            <img src="https://hackmd.io/_uploads/r1lTsYihge.png" class="image-placeholder">
+            <h3>a134: APCS 110.11 1.修補圍籬</h3>
+            <div class="code-box">#include &lt;iostream&gt;
+using namespace std;
+int main() {
+    int n; cin>>n; int a[n];
+    for (int i=0;i&lt;n;i++){ cin>>a[i]; }
+    int ans=0;
+    for (int i=0;i&lt;n;i++){
+        if(a[i]==0){
+            if(i==0){ ans+=a[i+1]; }
+            else if(i==n-1){ ans+=a[i-1]; }
+            else{ ans+=min(a[i-1],a[i+1]); }
+        }
+    }
+    cout&lt;&lt;ans; return 0;
+}</div>
+            <div class="image-container"><img src="https://hackmd.io/_uploads/r1lTsYihge.png"></div>
+            <p><strong>心得：</strong>邊界判斷是重點，確保不會存取到不存在的陣列位置。</p>
         </section>
 
         <section id="ch3">
-            <h1>CH3 課程筆記 - 數字遊戲</h1>
-            <p>(...其餘內容已根據你的筆記整合...)</p>
-            <img src="https://hackmd.io/_uploads/B1ROH1eolx.png" class="image-placeholder">
+            <h1>3 課程筆記</h1>
+            <div class="note-card">
+                <strong>重點內容：</strong> 數字大小比較、條件判斷、輸出格式控制。
+            </div>
+            <h3>a153: APCS 111.06 1.數字遊戲</h3>
+            <div class="code-box">#include &lt;iostream&gt;
+using namespace std;
+int main() {
+    int a,b,c,P,mid; cin>>a>>b>>c;
+    int max = a; if (b > max) max = b; if (c > max) max = c;
+    int min = a; if (b < min) min = b; if (c < min) min = c;
+    if(a==b&&b==c){ P=3; cout&lt;&lt;P&lt;&lt;" "&lt;&lt;a; }
+    else if(a==b||b==c||a==c){ P=2; cout&lt;&lt;P&lt;&lt;" "&lt;&lt;max&lt;&lt;" "&lt;&lt;min; }
+    else{
+        P=1; cout&lt;&lt;P&lt;&lt;" ";
+        if(a!=max&&a!=min) mid=a;
+        else if(b!=max&&b!=min) mid=b;
+        else mid=c;
+        cout&lt;&lt;max&lt;&lt;" "&lt;&lt;mid&lt;&lt;" "&lt;&lt;min;
+    }
+    return 0;
+}</div>
+            <div class="image-container"><img src="https://hackmd.io/_uploads/B1ROH1eolx.png"></div>
+            <p><strong>問題：</strong>忘記加空格導致 WA，要注意細節。</p>
         </section>
-        
-        <p style="text-align: center; color: #999; margin-top: 50px;">-- 筆記持續更新中 --</p>
 
-    </div>
+        <section id="ch4">
+            <h1>4 課程筆記</h1>
+            <div class="note-card">
+                <strong>重點內容：</strong> 相鄰資料比較、最大與最小值即時更新。
+            </div>
+            <h3>a154: APCS 111.10 1.巴士站牌</h3>
+            <div class="code-box">#include &lt;iostream&gt;
+using namespace std;
+int main() {
+    int n; cin>>n;
+    int nowx,nowy,x,y,d;
+    int maxd=0,mind=999;
+    cin>>nowx>>nowy;
+    for(int i=0;i&lt;n-1;i++){
+        cin>>x>>y;
+        d=abs(nowx-x)+abs(nowy-y);
+        if(d>maxd) maxd=d;
+        if(d&lt;mind) mind=d;
+        nowx=x; nowy=y;
+    }
+    cout&lt;&lt;maxd&lt;&lt;" "&lt;&lt;mind; return 0;
+}</div>
+            <div class="image-container"><img src="https://hackmd.io/_uploads/rJqfZxgjgl.png"></div>
+            <p><strong>心得：</strong>最小值初始值要給夠大。</p>
+        </section>
+
+        <section id="ch5">
+            <h1>5 課程筆記</h1>
+            <div class="note-card">
+                <strong>重點內容：</strong> 方向編碼狀態紀錄、模組運算 (%4) 判斷轉向。
+            </div>
+            <h3>a156: APCS 112.06 1.路徑偵測</h3>
+            <div class="code-box">#include &lt;iostream&gt;
+using namespace std;
+int main() {
+    int n,l=0,r=0,d=0,x,y,dir,nowdir=0,nowx,nowy;
+    cin>>n>>nowx>>nowy;
+    for (int i=0;i&lt;n-1;i++){
+        cin>>x>>y;
+        if(nowx>x) dir=2; else if(nowx&lt;x) dir=0;
+        else if(nowy>y) dir=3; else dir=1;
+        if(dir==(nowdir+1)%4) l++;
+        if(dir==(nowdir+2)%4) d++;
+        if(dir==(nowdir+3)%4) r++;
+        nowx=x; nowy=y; nowdir=dir;
+    }
+    cout&lt;&lt;l&lt;&lt;" "&lt;&lt;r&lt;&lt;" "&lt;&lt;d; return 0;
+}</div>
+            <div class="image-container"><img src="https://hackmd.io/_uploads/ryoU-Qtixl.png"></div>
+        </section>
+
+        <section id="ch6">
+            <h1>6 課程筆記</h1>
+            <div class="note-card">
+                <strong>重點內容：</strong> 分類統計（左右移動）、同步紀錄數量與極值。
+            </div>
+            <h3>a157: APCS 112.10 1.機械鼠</h3>
+            <div class="code-box">#include &lt;iostream&gt;
+using namespace std;
+int main() {
+    int x,n,c=0,b=0,a[20],max,min; cin>>x>>n;
+    max=x; min=x;
+    for(int i=0;i&lt;n;i++){
+        cin>>a[i];
+        if(a[i]>=x){ c++; if (a[i]>max) max=a[i]; }
+        if(a[i]&lt;=x){ b++; if (a[i]&lt;min) min=a[i]; }
+    }
+    if(c>b) cout&lt;&lt;c&lt;&lt;" "&lt;&lt;max;
+    else cout&lt;&lt;b&lt;&lt;" "&lt;&lt;min;
+    return 0;
+}</div>
+            <div class="image-container"><img src="https://hackmd.io/_uploads/ByAZ9mtixe.png"></div>
+        </section>
+
+        <section id="ch7">
+            <h1>7 課程筆記</h1>
+            <div class="note-card">
+                <strong>重點內容：</strong> 找最大與次大值、同步更新多個屬性。
+            </div>
+            <h3>a158: APCS 113.01 1.遊戲選角</h3>
+            <div class="code-box">#include &lt;iostream&gt;
+using namespace std;
+int main() {
+    int f=0,s=0,fa=0,fd=0,sa=0,sd=0,ab,a,d,n; cin >> n;
+    for (int i = 0; i &lt; n; i++) {
+        cin>>a>>d; ab=a*a+d*d;
+        if(ab>f){ s=f; sa=fa; sd=fd; f=ab; fa=a; fd=d; }
+        else if(ab>s){ s=ab; sa=a; sd=d; }
+    }
+    cout&lt;&lt;sa&lt;&lt;" "&lt;&lt;sd; return 0;
+}</div>
+            <div class="image-container"><img src="https://hackmdio/_uploads/rkkSR7Fjex.png"></div>
+        </section>
+
+        <p style="text-align: center; color: #999;">-- APCS 筆記全集匯入完成 --</p>
+    </main>
+</body>
+</html>
 
 </body>
 </html>
