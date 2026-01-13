@@ -1,7 +1,35 @@
 <!DOCTYPE html>
 <html>
+<head>
+  <meta charset="UTF-8">
+  <title>我的第一個網頁</title>
+  <style>
+    /* 這裡就是 CSS，負責控制外觀 */
+    body {
+      font-family: "Microsoft JhengHei", Arial, sans-serif;
+      background-color: #f4f7f6; /* 淡淡的背景色 */
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .card {
+      background: white;
+      padding: 40px;
+      border-radius: 15px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+    h1 { color: #2c3e50; }
+    p { color: #7f8c8d; font-size: 1.2rem; }
+  </style>
+</head>
 <body>
-  <h1>歡迎來到我的第一個網頁！</h1>
-  <p>這是我用 Gemini 製作出來的網站。</p>
+  <div class="card">
+    <h1>歡迎來到我的第一個網頁！</h1>
+    <p>這是我用 Gemini 製作出來的網站。</p>
+  </div>
 </body>
 </html>
