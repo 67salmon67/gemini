@@ -2,34 +2,62 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>我的第一個網頁</title>
+  <title>我的個人網頁</title>
   <style>
-    /* 這裡就是 CSS，負責控制外觀 */
     body {
       font-family: "Microsoft JhengHei", Arial, sans-serif;
-      background-color: #f4f7f6; /* 淡淡的背景色 */
+      background-color: #f0f2f5;
       display: flex;
-      flex-direction: column;
-      align-items: center;
       justify-content: center;
+      align-items: center;
       height: 100vh;
       margin: 0;
     }
     .card {
       background: white;
-      padding: 40px;
-      border-radius: 15px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
       text-align: center;
+      max-width: 350px;
     }
-    h1 { color: #2c3e50; }
-    p { color: #7f8c8d; font-size: 1.2rem; }
+    /* 圖片樣式 */
+    .profile-img {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%; /* 變成圓形 */
+      object-fit: cover;
+      border: 5px solid #e1e4e8;
+      margin-bottom: 20px;
+    }
+    h1 { color: #1a73e8; margin-bottom: 10px; }
+    p { color: #5f6368; line-height: 1.6; }
+    /* 按鈕樣式 */
+    .btn {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 10px 25px;
+      background-color: #1a73e8;
+      color: white;
+      text-decoration: none; /* 去掉底線 */
+      border-radius: 25px;
+      transition: background 0.3s;
+    }
+    .btn:hover {
+      background-color: #1557b0;
+    }
   </style>
 </head>
 <body>
+
   <div class="card">
-    <h1>歡迎來到我的第一個網頁！</h1>
-    <p>這是我用 Gemini 製作出來的網站。</p>
+    <img src="https://picsum.photos/200" alt="頭像" class="profile-img">
+    
+    <h1>你好，我是網頁主人</h1>
+    <p>這是我在 GitHub 上建立的第一個家。我正在學習如何把想法變成網頁！</p>
+    
+    <a href="https://github.com" class="btn" target="_blank">點擊追蹤我</a>
   </div>
+
 </body>
 </html>
