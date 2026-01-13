@@ -21,31 +21,38 @@
       text-align: center;
       max-width: 350px;
     }
-    /* 圖片樣式 */
     .profile-img {
       width: 150px;
       height: 150px;
-      border-radius: 50%; /* 變成圓形 */
+      border-radius: 50%;
       object-fit: cover;
       border: 5px solid #e1e4e8;
       margin-bottom: 20px;
     }
     h1 { color: #1a73e8; margin-bottom: 10px; }
     p { color: #5f6368; line-height: 1.6; }
-    /* 按鈕樣式 */
+    
+    /* 按鈕容器 */
+    .button-group {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 20px;
+    }
+    
     .btn {
       display: inline-block;
-      margin-top: 20px;
       padding: 10px 25px;
-      background-color: #1a73e8;
       color: white;
-      text-decoration: none; /* 去掉底線 */
+      text-decoration: none;
       border-radius: 25px;
-      transition: background 0.3s;
+      transition: opacity 0.3s;
     }
-    .btn:hover {
-      background-color: #1557b0;
-    }
+    .btn:hover { opacity: 0.8; }
+    
+    /* 不同顏色的按鈕 */
+    .btn-blue { background-color: #1a73e8; }
+    .btn-green { background-color: #28a745; }
   </style>
 </head>
 <body>
@@ -54,11 +61,14 @@
     <img src="https://picsum.photos/200" alt="頭像" class="profile-img">
     
     <h1>你好，我是網頁主人</h1>
-    <p>這是我在 GitHub 上建立的第一個家。我正在學習如何把想法變成網頁！</p>
+    <p>這是我在 GitHub 上建立的第一個家。點擊下方按鈕來看看我的學習筆記吧！</p>
     
-    <a href="https://github.com" class="btn" target="_blank">點擊追蹤我</a>
+    <div class="button-group">
+      <a href="https://github.com" class="btn btn-blue" target="_blank">追蹤我的 GitHub</a>
+      
+      <a href="cpp/" class="btn btn-green">前往 C++ 筆記資料夾</a>
+    </div>
   </div>
-  <a href="cpp/" class="btn" style="background-color: #28a745;">前往 C++ 筆記</a>
 
 </body>
 </html>
